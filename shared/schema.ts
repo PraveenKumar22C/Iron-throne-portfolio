@@ -25,8 +25,11 @@ export const contactMessages = pgTable("contact_messages", {
   message: text("message").notNull(),
 });
 
-export const insertContactMessageSchema = createInsertSchema(contactMessages).omit({
-  id: true,
+export const insertContactMessageSchema = createInsertSchema(contactMessages).pick({
+  name: true,
+  email: true,
+  subject: true,
+  message: true,
 });
 
 export type InsertContactMessage = z.infer<typeof insertContactMessageSchema>;

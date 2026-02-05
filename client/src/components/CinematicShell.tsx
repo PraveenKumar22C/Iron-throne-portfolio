@@ -56,18 +56,18 @@ export default function CinematicShell({
   }, []);
 
   const navItems = useMemo(() => {
- const items = [];
+    const items = [];
 
-  if (location !== "/") {
-    items.push({ label: "The Realm", href: "/", icon: Sparkles });
-  }
+    if (location !== "/") {
+      items.push({ label: "The Realm", href: "/", icon: Sparkles });
+    }
 
-  if (location !== "/contact-inbox") {
-    items.push({ label: "Inbox", href: "/contact-inbox", icon: Inbox });
-  }
+    if (location !== "/contact-inbox") {
+      items.push({ label: "Inbox", href: "/contact-inbox", icon: Inbox });
+    }
 
-  return items;
-}, [location]);
+    return items;
+  }, [location]);
 
   const handleMusicToggle = async () => {
     if (!started) {
@@ -186,35 +186,37 @@ export default function CinematicShell({
                   </TooltipContent>
                 </Tooltip>
 
-                <Link
-                  href="/#contact"
-                  data-testid="nav-contact-jump"
-                  onClick={(e) => {
-                    if (location === "/") {
-                      e.preventDefault();
-                      const element = document.getElementById("contact");
-                      if (element) {
-                        const headerOffset = 80;
-                        const elementPosition =
-                          element.getBoundingClientRect().top;
-                        const offsetPosition =
-                          elementPosition + window.scrollY - headerOffset;
+                {location !== "/contact-inbox" && (
+                  <Link
+                    href="/#contact"
+                    data-testid="nav-contact-jump"
+                    onClick={(e) => {
+                      if (location === "/") {
+                        e.preventDefault();
+                        const element = document.getElementById("contact");
+                        if (element) {
+                          const headerOffset = 80;
+                          const elementPosition =
+                            element.getBoundingClientRect().top;
+                          const offsetPosition =
+                            elementPosition + window.scrollY - headerOffset;
 
-                        window.scrollTo({
-                          top: offsetPosition,
-                          behavior: "smooth",
-                        });
+                          window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth",
+                          });
+                        }
                       }
-                    }
-                  }}
-                  className={cn(
-                    "btn-cinematic text-primary-foreground",
-                    "px-5 py-2.5",
-                  )}
-                >
-                  <ScrollText className="h-4 w-4" />
-                  Summon Me
-                </Link>
+                    }}
+                    className={cn(
+                      "btn-cinematic text-primary-foreground",
+                      "px-5 py-2.5",
+                    )}
+                  >
+                    <ScrollText className="h-4 w-4" />
+                    Summon Me
+                  </Link>
+                )}
               </div>
 
               <button
@@ -328,34 +330,39 @@ export default function CinematicShell({
                         )}
                       </div>
 
-                      <Link
-                        href="/#contact"
-                        data-testid="nav-contact-jump-mobile"
-                        onClick={(e) => {
-                          if (location === "/") {
-                            e.preventDefault();
-                            const element = document.getElementById("contact");
-                            if (element) {
-                              const headerOffset = 80;
-                              const elementPosition =
-                                element.getBoundingClientRect().top;
-                              const offsetPosition =
-                                elementPosition + window.scrollY - headerOffset;
+                      {location !== "/contact-inbox" && (
+                        <Link
+                          href="/#contact"
+                          data-testid="nav-contact-jump-mobile"
+                          onClick={(e) => {
+                            if (location === "/") {
+                              e.preventDefault();
+                              const element =
+                                document.getElementById("contact");
+                              if (element) {
+                                const headerOffset = 80;
+                                const elementPosition =
+                                  element.getBoundingClientRect().top;
+                                const offsetPosition =
+                                  elementPosition +
+                                  window.scrollY -
+                                  headerOffset;
 
-                              window.scrollTo({
-                                top: offsetPosition,
-                                behavior: "smooth",
-                              });
+                                window.scrollTo({
+                                  top: offsetPosition,
+                                  behavior: "smooth",
+                                });
+                              }
                             }
-                          }
-                        }}
-                        className={cn(
-                          "btn-cinematic text-primary-foreground w-full justify-center",
-                        )}
-                      >
-                        <ScrollText className="h-4 w-4" />
-                        Summon Me
-                      </Link>
+                          }}
+                          className={cn(
+                            "btn-cinematic text-primary-foreground w-full justify-center",
+                          )}
+                        >
+                          <ScrollText className="h-4 w-4" />
+                          Summon Me
+                        </Link>
+                      )}
                     </div>
                   </div>
                 </motion.div>
