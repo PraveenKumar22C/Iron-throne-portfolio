@@ -1,0 +1,286 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Crimson+Pro:ital,wght@0,300..900;1,300..900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================================================
+   CINEMATIC DARK FANTASY THEME (GoT-inspired)
+   - Display: Cinzel (regal, carved stone vibe)
+   - Body: Crimson Pro (editorial, readable, old-world)
+   ========================================================= */
+
+:root {
+  --font-sans: "Crimson Pro", ui-serif, Georgia, serif;
+  --font-serif: "Crimson Pro", ui-serif, Georgia, serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+
+  /* Core palette — space-separated HSL */
+  --background: 222 35% 6%; /* obsidian night */
+  --foreground: 32 35% 92%; /* warm parchment */
+  --muted: 222 26% 12%;
+  --muted-foreground: 32 18% 70%;
+
+  --card: 222 28% 9%;
+  --card-foreground: 32 35% 92%;
+  --card-border: 220 18% 18%;
+
+  --border: 220 18% 18%;
+  --input: 220 18% 22%;
+  --ring: 38 92% 55%;
+
+  /* House-like accents */
+  --primary: 38 92% 55%; /* wildfire gold */
+  --primary-foreground: 222 35% 8%;
+
+  --secondary: 215 22% 16%;
+  --secondary-foreground: 32 35% 92%;
+
+  --accent: 198 78% 52%; /* icy cyan */
+  --accent-foreground: 222 35% 8%;
+
+  --destructive: 0 78% 54%;
+  --destructive-foreground: 0 0% 98%;
+
+  /* Golden bg color for buttons - darker for better contrast */
+  --primary-btn-bg: 38 92% 45%;
+  --primary-btn-border: 38 92% 65%;
+
+  /* Sidebar vars (existing tailwind config references them) */
+  --sidebar: 222 28% 8%;
+  --sidebar-foreground: 32 35% 92%;
+  --sidebar-border: 220 18% 18%;
+  --sidebar-primary: 38 92% 55%;
+  --sidebar-primary-foreground: 222 35% 8%;
+  --sidebar-accent: 198 78% 52%;
+  --sidebar-accent-foreground: 222 35% 8%;
+  --sidebar-ring: 38 92% 55%;
+
+  --popover: 222 28% 9%;
+  --popover-foreground: 32 35% 92%;
+  --popover-border: 220 18% 18%;
+
+  /* Charts (rarely used, but keep cohesive) */
+  --chart-1: 38 92% 55%;
+  --chart-2: 198 78% 52%;
+  --chart-3: 0 78% 54%;
+  --chart-4: 150 52% 48%;
+  --chart-5: 280 68% 62%;
+
+  --radius: 1rem;
+
+  /* Elevation overlay system used by existing utilities */
+  --button-outline: rgba(255, 255, 255, 0.08);
+  --badge-outline: rgba(255, 255, 255, 0.06);
+  --opaque-button-border-intensity: 9;
+  --elevate-1: rgba(255, 255, 255, 0.035);
+  --elevate-2: rgba(255, 255, 255, 0.075);
+}
+
+/* Keep .dark defined for compatibility (app is already dark by default) */
+.dark {
+  --background: 222 35% 6%;
+  --foreground: 32 35% 92%;
+  --muted: 222 26% 12%;
+  --muted-foreground: 32 18% 70%;
+  --card: 222 28% 9%;
+  --card-foreground: 32 35% 92%;
+  --border: 220 18% 18%;
+  --input: 220 18% 22%;
+  --ring: 38 92% 55%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-sans);
+    text-rendering: geometricPrecision;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Cinzel", serif;
+    @apply font-bold tracking-tight;
+  }
+
+  ::selection {
+    background-color: hsl(var(--primary) / 0.25);
+  }
+}
+
+/* =========================================================
+   Atmosphere: grain + fog + ember shimmer
+   ========================================================= */
+
+@layer utilities {
+  .font-display {
+    font-family: "Cinzel", serif;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 24px hsl(var(--primary) / 0.35);
+  }
+
+  .ring-ember {
+    box-shadow: 0 0 0 1px hsl(var(--primary) / 0.22),
+      0 0 0 8px hsl(var(--primary) / 0.08);
+  }
+
+  .glass-panel {
+    background: linear-gradient(
+      180deg,
+      hsl(var(--card) / 0.74),
+      hsl(var(--card) / 0.44)
+    );
+    border: 1px solid hsl(var(--border) / 0.75);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(10px);
+  }
+
+  .scene-gradient-kings {
+    background: radial-gradient(1200px 700px at 30% 20%, hsl(38 92% 55% / 0.18), transparent 60%),
+      radial-gradient(900px 560px at 75% 25%, hsl(0 78% 54% / 0.10), transparent 58%),
+      radial-gradient(900px 700px at 50% 80%, hsl(198 78% 52% / 0.08), transparent 65%),
+      linear-gradient(180deg, hsl(222 35% 6%), hsl(222 32% 7%));
+  }
+
+  .scene-gradient-north {
+    background: radial-gradient(1100px 680px at 30% 20%, hsl(198 78% 52% / 0.16), transparent 60%),
+      radial-gradient(1000px 760px at 75% 80%, hsl(210 18% 40% / 0.10), transparent 62%),
+      linear-gradient(180deg, hsl(222 35% 6%), hsl(222 28% 7%));
+  }
+
+  .scene-gradient-dragons {
+    background: radial-gradient(1200px 700px at 25% 25%, hsl(0 78% 54% / 0.18), transparent 60%),
+      radial-gradient(900px 560px at 70% 30%, hsl(38 92% 55% / 0.12), transparent 58%),
+      radial-gradient(900px 700px at 55% 80%, hsl(280 68% 62% / 0.08), transparent 62%),
+      linear-gradient(180deg, hsl(222 35% 6%), hsl(222 28% 7%));
+  }
+
+  .scene-gradient-wall {
+    background: radial-gradient(1200px 700px at 35% 18%, hsl(198 78% 52% / 0.12), transparent 62%),
+      radial-gradient(900px 560px at 75% 75%, hsl(38 92% 55% / 0.08), transparent 60%),
+      linear-gradient(180deg, hsl(222 35% 6%), hsl(222 28% 7%));
+  }
+
+  .grain-overlay {
+    position: relative;
+  }
+  .grain-overlay::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.12;
+    mix-blend-mode: overlay;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.38'/%3E%3C/svg%3E");
+  }
+
+  .fog {
+    position: relative;
+    overflow: clip;
+  }
+  .fog::after {
+    content: "";
+    position: absolute;
+    inset: -25%;
+    pointer-events: none;
+    background:
+      radial-gradient(closest-side at 30% 40%, rgba(255, 255, 255, 0.06), transparent 70%),
+      radial-gradient(closest-side at 70% 55%, rgba(255, 255, 255, 0.04), transparent 68%),
+      radial-gradient(closest-side at 45% 75%, rgba(255, 255, 255, 0.035), transparent 66%);
+    filter: blur(10px);
+    transform: translate3d(0, 0, 0);
+    animation: fog-drift 14s ease-in-out infinite alternate;
+  }
+
+  @keyframes fog-drift {
+    0% {
+      transform: translate3d(-2%, -1%, 0) scale(1.02);
+      opacity: 0.85;
+    }
+    100% {
+      transform: translate3d(2%, 1%, 0) scale(1.06);
+      opacity: 0.95;
+    }
+  }
+
+  @keyframes ember-float {
+    0% {
+      transform: translateY(8px);
+      opacity: 0.0;
+    }
+    15% {
+      opacity: 0.75;
+    }
+    70% {
+      opacity: 0.55;
+    }
+    100% {
+      transform: translateY(-22px);
+      opacity: 0.0;
+    }
+  }
+
+  .ember {
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0) 55%),
+      radial-gradient(circle at 55% 55%, hsl(var(--primary) / 0.9), rgba(0, 0, 0, 0) 70%);
+    filter: drop-shadow(0 0 10px hsl(var(--primary) / 0.3));
+    animation: ember-float 5.8s ease-in-out infinite;
+  }
+
+  .btn-cinematic {
+    @apply relative inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold transition-all duration-300 ease-out;
+    border: 1px solid hsl(var(--primary-btn-border) / 0.45);
+    background: linear-gradient(135deg, hsl(var(--primary-btn-bg) / 0.85), hsl(0 78% 44% / 0.3));
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
+    color: hsl(var(--primary-foreground));
+  }
+  .btn-cinematic:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 55px rgba(0, 0, 0, 0.6);
+    border-color: hsl(var(--primary-btn-border) / 0.8);
+    background: linear-gradient(135deg, hsl(var(--primary-btn-bg)), hsl(0 78% 44% / 0.5));
+  }
+  .btn-cinematic:active {
+    transform: translateY(0px);
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.55);
+  }
+  .btn-cinematic:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 1px hsl(var(--primary) / 0.35),
+      0 0 0 8px hsl(var(--primary) / 0.12);
+  }
+
+  .link-underline {
+    background-image: linear-gradient(
+      to right,
+      hsl(var(--primary)),
+      hsl(var(--accent))
+    );
+    background-size: 0% 2px;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    transition: background-size 300ms ease;
+  }
+  .link-underline:hover {
+    background-size: 100% 2px;
+  }
+}
