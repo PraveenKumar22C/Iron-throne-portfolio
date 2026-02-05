@@ -89,7 +89,7 @@ console.log(`Running in ${process.env.NODE_ENV} mode`);
   httpServer.listen(
     {
       port,
-     host: "0.0.0.1",
+     host: "0.0.0.0",
     reusePort: true,
     },
     () => {
