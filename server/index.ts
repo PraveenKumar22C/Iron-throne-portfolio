@@ -76,7 +76,8 @@ app.use((req, res, next) => {
     return res.status(status).json({ message });
   });
 
-  console.log(`Running in ${process.env.NODE_ENV} mode`);
+
+console.log(`Running in ${process.env.NODE_ENV} mode`);
   if (process.env.NODE_ENV === "production") {
     serveStatic(app);
   } else {
@@ -85,14 +86,14 @@ app.use((req, res, next) => {
   }
 
   const port = parseInt(process.env.PORT || "5000", 10);
-
-  // ← FIXED: use dynamic host + remove invalid "0.0.0.1" + remove reusePort (not needed)
-  const host = process.env.NODE_ENV === "production" ? "0.0.0.0" : "127.0.0.1";
-
   httpServer.listen(
-    { port, host },
+    {
+      port,
+     host: "0.0.0.1",
+    reusePort: true,
+    },
     () => {
-      log(`serving on http://${host === "0.0.0.0" ? "0.0.0.0 (all interfaces)" : "localhost"}:${port}`);
+      log(`serving on port ${port}`);
     },
   );
 })();
